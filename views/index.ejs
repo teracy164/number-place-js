@@ -1,0 +1,35 @@
+<!-- JS/CSSは外部ファイルに切り出し -->
+<script type="text/javascript" src="/js/ctrl-input.js"></script>
+<link href="/css/styles.css" rel="stylesheet">
+
+<div>
+  <a href="/">リセット</a>
+</div>
+<form method="post" action="/check">
+  <!-- 問題情報隠し要素で保持 -->
+  <input name="level" type="hidden" value="<%= level %>" />
+  <input name="questionNum" type="hidden" value="<%= questionNum %>" />
+
+  <div style="padding: 20px;">
+    <table>
+      <% for (var row=0; row < inputs.length; row++) { %>
+        <tr>
+          <% for (var col=0; col < inputs[row].length; col++) { %>
+            <td>
+              <% const readonly=fixedCells[row][col] ? 'readonly' : '' ; %>
+                <input name="inputs[]" class="cell" type="number" value="<%= inputs[row][col] %>" <%=readonly %>
+                min="1"
+                max="9"
+                maxlength="1"
+                />
+            </td>
+            <% } %>
+        </tr>
+        <% } %>
+    </table>
+  </div>
+  <div style="text-align: center">
+    <button type="submit">判定</button>
+    <pre><%= result %></pre>
+  </div>
+</form>
