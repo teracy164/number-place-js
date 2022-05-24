@@ -80,7 +80,6 @@ const checkDuplicateBlock = function (inputs) {
     const baseCol = (block % blockCellNum) * blockCellNum;
     for (let row = baseRow; row < baseRow + blockCellNum; row++) {
       for (let col = baseCol; col < baseCol + blockCellNum; col++) {
-        console.log(row, col, inputs[row][col])
         if (inputs[row][col]) {
           for (let i = 0; i < blockCellNum * blockCellNum; i++) {
             const r = baseRow + Math.floor(i / blockCellNum);

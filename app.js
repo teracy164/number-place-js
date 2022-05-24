@@ -12,10 +12,9 @@ app.use(express.static('public'));
 app.get("/", (req, res) => {
   // 出題する問題は固定
   const level = 'very-easy';
-  const questionNum = 0;
 
   // 問題を取得
-  const [question, fixedCells] = questionService.getQuestion(level, questionNum);
+  const [question, fixedCells, questionNum] = questionService.getQuestion(level);
 
   // 初期データで画面を表示
   res.render("index.ejs", {

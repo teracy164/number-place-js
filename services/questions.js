@@ -1,11 +1,15 @@
 /**
  * 
  * @param {string} level questionsディレクトリ内のファイル名と一致すること
- * @param {number} questionNum 問題番号（インデックス）
+ * @param {number} questionNum 問題番号（インデックス）※指定なしの場合はランダムで取得
  * @returns {[number[][], number[][]]} 問題、固定マス情報
  */
-const getQuestion = function (level, questionNum) {
+const getQuestion = function (level, questionNum = null) {
     const questions = require('../questions/' + level);
+    if (questionNum === null) {
+        // 問題番号の指定がない場合はランダムで取得
+        questionNum = Math.floor(Math.random() * questions.length);
+    }
     const q = questions[questionNum];
 
     // 固定マス情報の作成
@@ -18,7 +22,7 @@ const getQuestion = function (level, questionNum) {
         }
         fixed.push(cols);
     }
-    return [q, fixed];
+    return [q, fixed, questionNum];
 };
 
 /**
